@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Welcome to Hyde!"
 date:   2014-02-09 22:57:41
 categories: jekyll update
-bgcolor: "#333333"
+bgcolor: "#cfdaf0"
 ---
 
 You'll find this post in your `_posts` directory - edit this post and re-build (or run with the `-w` switch) to see your changes!

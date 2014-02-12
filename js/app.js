@@ -3,7 +3,10 @@
 */
 'use strict';
 
-angular.module('dynamicJekyll', ['ngRoute'])
+angular.module('hyde', ['ngRoute'])
+	/**
+	 * Sets main routing of app to provide dynamic loading of site content.
+	 */
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider
 			.when('/', {
@@ -18,10 +21,10 @@ angular.module('dynamicJekyll', ['ngRoute'])
 				}
 			});
 	}])
-	.controller('mainCtrl', function($scope){
-		$scope.pageflip = function() {
-		};
-	})
+	/**
+	 * Override a-tag to prevent direct loading of partial. Links starting with 'http' and
+	 * 'www' are let through to allow linking to third-party website
+	 */
 	.directive('a', ['$location', function($location) {
 		return {
 			restrict: 'E',
@@ -41,8 +44,13 @@ angular.module('dynamicJekyll', ['ngRoute'])
 				})
 			}
 		}
-		console.log(arguments);
 	}])
+	/**
+	 * Directive for adding dynamic content. If you add a attribute to the additive-tag in your template,
+	 * you can use angular or jquery inside the link-function to manipulate the DOM to your needs. The
+	 * allows the change of the background-color for specific sites. As for now you have to set color for
+	 * every page to change color back to original when leaving colored page.
+	 */
 	.directive('additive', [function() {
 		return {
 			restrict: 'E',
