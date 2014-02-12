@@ -50,10 +50,6 @@ angular.module('dynamicJekyll', ['ngRoute'])
 				bgColor: '@'
 			},
 			link: function(scope, element, attrs) {
-				 // var body = angular.element(document).find('body');
-				 // angular.element(body).css('backgroundColor', scope.bgColor);
-
-				 // $('body').css('backgroundColor', scope.bgColor);
 				 $('body').animate({
 				 	"background-color": scope.bgColor
 				 }, 1000);
