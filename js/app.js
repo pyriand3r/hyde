@@ -3,29 +3,26 @@
 */
 'use strict';
 
-angular.module('dynamicJekyll', [])
-	.controller('mainCtrl', function($scope, $location, $routeParams){
-		console.log($routeParams);
-		$scope.content = '/main.html';
-
-		$scope.setContent = function(newVal, oldVal) {
-			if (newVal == $scope.content) {
-				return;
-			}
-			$scope.content = newVal;
-
-			$location.path(newVal);
-			if (newVal == '/main.html') {
-				$location.path('/');
-			}
-			
-			$scope.$apply();
+angular.module('dynamicJekyll', ['ngRoute'])
+	.config(['$routeProvider', function($routeProvider) {
+		$routeProvider
+			.when('/', {
+				templateUrl: '/home.html'
+			})
+			.when('/home.html', {
+				redirectTo: '/'
+			})
+			.when('/:link*', {
+				templateUrl: function(params) {
+					return params.link;
+				}
+			});
+	}])
+	.controller('mainCtrl', function($scope){
+		$scope.pageflip = function() {
 		};
 	})
-	.controller('linkCtrl', function($scope, $location) {
-		console.log('location: ', $location.path);
-	})
-	.directive('a', function() {
+	.directive('a', ['$location', function($location) {
 		return {
 			restrict: 'E',
 			link: function(scope, elem, attrs) {
@@ -35,13 +32,32 @@ angular.module('dynamicJekyll', [])
 					} else {
 						e.preventDefault();
 						if (attrs.href.length == 1) {
-							scope.$parent.setContent('/main.html');
+							$location.path('/home.html');
 						} else {
-							scope.$parent.setContent(attrs.href);
+							$location.path(attrs.href);
 						}
+						scope.$apply();
 					} 
 				})
 			}
 		}
 		console.log(arguments);
-	});
+	}])
+	.directive('additive', [function() {
+		return {
+			restrict: 'E',
+			scope: {
+				bgColor: '@'
+			},
+			link: function(scope, element, attrs) {
+				 // var body = angular.element(document).find('body');
+				 // angular.element(body).css('backgroundColor', scope.bgColor);
+
+				 // $('body').css('backgroundColor', scope.bgColor);
+				 $('body').animate({
+				 	"background-color": scope.bgColor
+				 }, 1000);
+			}
+		}
+	}])
+;
