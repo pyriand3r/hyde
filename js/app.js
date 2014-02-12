@@ -17,7 +17,11 @@ angular.module('hyde', ['ngRoute'])
 			})
 			.when('/:link*', {
 				templateUrl: function(params) {
-					return params.link;
+					var link = params.link;
+					if (link.substr(link.length - 4, link.length) != 'html') {
+						link += '/index.html';
+					}
+					return link;
 				}
 			});
 	}])
