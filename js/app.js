@@ -27,7 +27,7 @@ angular.module('dynamicJekyll', ['ngRoute'])
 			restrict: 'E',
 			link: function(scope, elem, attrs) {
 				elem.on('click', function(e) {
-					if (attrs.href.substr(0,4) == 'http') {
+					if (attrs.href.substr(0,4) == 'http' || attrs.href.substr(0,3) == 'www') {
 						return;
 					} else {
 						e.preventDefault();
