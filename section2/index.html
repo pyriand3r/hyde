@@ -1,14 +1,12 @@
 ---
-layout: default
-title: Your New Hyde Site
-bgcolor: "#313335"
-color: "#458e97"
+layout: section2
+title: section2
 ---
 
 <div id="home">
-  <h1>Blog Posts</h1>
+  <h1>section2</h1>
   <ul class="posts">
-    {% for post in site.posts %}
+    {% for post in site.categories.hyde %}
       <li>
       	<span class="post_date">{{ post.date | date_to_string }}</span> &raquo; <a class="post_link" href="{{ post.url }}">{{ post.title }}</a></br>
       	<span class="post_excerpt">{{ post.excerpt }}</span>

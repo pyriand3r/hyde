@@ -3,7 +3,7 @@
 */
 'use strict';
 
-angular.module('hyde', ['ngRoute'])
+angular.module('hyde', ['ngRoute', 'ngAnimate'])
 	/**
 	 * Sets main routing of app to provide dynamic loading of site content.
 	 */
@@ -59,12 +59,18 @@ angular.module('hyde', ['ngRoute'])
 		return {
 			restrict: 'E',
 			scope: {
-				bgColor: '@'
+				bgColor: '@',
+				color: '@'
 			},
 			link: function(scope, element, attrs) {
-				 $('body').animate({
-				 	"background-color": scope.bgColor
-				 }, 1000);
+				$('body').animate({
+					backgroundColor: scope.bgColor,
+				 	borderTopColor: scope.color
+				}, 1000);
+
+				$('#header > .title > a').animate({
+				 	'color': scope.color
+				});
 			}
 		}
 	}])
