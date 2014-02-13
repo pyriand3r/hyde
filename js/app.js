@@ -10,10 +10,9 @@ angular.module('hyde', ['ngRoute', 'ngAnimate'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider
 			.when('/', {
-				templateUrl: '/home.html'
-			})
-			.when('/home.html', {
-				redirectTo: '/'
+				// Link to your home.html. 
+				// If you want to use hyde as a github-page change this link to '/repository/home.html'
+				templateUrl: '/home.html'	
 			})
 			.when('/:link*', {
 				templateUrl: function(params) {
@@ -38,11 +37,7 @@ angular.module('hyde', ['ngRoute', 'ngAnimate'])
 						return;
 					} else {
 						e.preventDefault();
-						if (attrs.href.length == 1) {
-							$location.path('/home.html');
-						} else {
-							$location.path(attrs.href);
-						}
+						$location.path(attrs.href);
 						scope.$apply();
 					} 
 				})

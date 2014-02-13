@@ -2,6 +2,8 @@
 
 simple, blog-aware, **dynamic** sites
 
+Want to see it in action: Check out the [Hyde Demo Page](http://pyriand3r.github.io/hyde) hosted on Github Pages.
+
 -------
 
 Do you ever wanted a simple yet blazing fast blogging software? Then you should give [jekyll](http://jekyllrb.com/) a try. But jekyll is restricted to static sites only as it generates plain html-pages for every post etc. No dynamic fancy stuff like background-color changes etc.  
@@ -43,6 +45,24 @@ All templates - except the `index.html` - should be partials and no complete htm
 
 The index.html template is the main "wrapper"-site in which all content is injected. Change it to the way your site should look like.
 
+## app.js
+
+This is the app-file that does all the magic. If you want to add animations do it here. You can extend the `additive` directive or create your own custom object.
+
 ### Writing posts
 
 Writing posts is as you know it from jekyll. Write them in the way jekyll wants you to. Inside the front-matter you can create custom variables with which you can then manipulate the DOM. I recommend using a custom html-tag, providing your additional data as an attribute to this custom tag. This way you can easily access the data inside an angular-directive to make use of it.
+
+## Using hyde as gh-pages
+
+If you want to use hyde as a Github Page you have to modify the app.js so your home.html will be shown: 
+
+Change line 15:
+
+    templateUrl: '/home.html'
+
+to
+
+    templateUrl: '/repositoryname/home.html'
+
+to make it work.
