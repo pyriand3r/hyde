@@ -1,3 +1,5 @@
 name: Your New Hyde Site
 markdown: redcarpet
 pygments: true
+
+theme: jekyll-theme-cayman
